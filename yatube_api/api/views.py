@@ -6,7 +6,8 @@ from rest_framework.generics import get_object_or_404
 
 from .paginator import MyPaginator
 from .permissions import OwnerOrSafeMethods
-from .serializers import CommentSerializer, FollowSerializer, GroupSerializer, PostSerializer
+from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
+                          PostSerializer)
 
 
 class PostViewSet(viewsets.ModelViewSet):

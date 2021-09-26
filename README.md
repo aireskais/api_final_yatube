@@ -47,7 +47,7 @@ python manage.py runserver
 # Примеры запросов
 Локументация:
 - /redoc/
-- 
+
 Получить все посты:
 - /api/v1/posts/
 
