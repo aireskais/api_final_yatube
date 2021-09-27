@@ -8,10 +8,3 @@ class OwnerOrSafeMethods(permissions.BasePermission):
         return (request.method in permissions.SAFE_METHODS
                 or obj.author == request.user
                 )
-#
-#
-# class Anonymous(permissions.BasePermission):
-#     message = 'Учетные данные не были предоставлены.'
-#
-#     def has_permission(self, request, view):
-#         return request.user.is_authenticated
