@@ -1,6 +1,5 @@
-from posts.models import Follow, Group, Post, User
+from posts.models import Follow, Group, Post
 from rest_framework import permissions, viewsets
-from rest_framework.exceptions import ValidationError
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
 
@@ -32,20 +31,10 @@ class FollowViewSet(PostViewSet):
     pagination_class = None
 
     def get_queryset(self):
-        return Follow.objects.filter(user=self.request.user)
+        return self.request.user.follower.all()
 
     def perform_create(self, serializer):
-        following = serializer.validated_data.get('following')
-        author = get_object_or_404(User, username=following)
-        exist_follow = Follow.objects.filter(
-            user=self.request.user,
-            following=following
-        )
-        if exist_follow:
-            raise ValidationError('Уже подписан')
-        if author == self.request.user:
-            raise ValidationError('Сам на себя подписываешься!')
-        serializer.save(user=self.request.user, following=following)
+        serializer.save(user=self.request.user)
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
