@@ -1,7 +1,8 @@
-from posts.models import Follow, Group, Post
 from rest_framework import permissions, viewsets
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
+
+from posts.models import Follow, Group, Post
 
 from .paginator import MyPaginator
 from .permissions import OwnerOrSafeMethods
